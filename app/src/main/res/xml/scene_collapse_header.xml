@@ -5,7 +5,7 @@
     <Transition
         app:constraintSetStart="@id/expand"
         app:constraintSetEnd="@id/collapse"
-        app:duration="1000">
+        app:duration="3000">
 
         <OnSwipe
             app:touchAnchorSide="top"
@@ -13,12 +13,26 @@
             app:touchAnchorId="@id/recycler_view"/>
 
         <KeyFrameSet>
+            <KeyPosition
+                app:framePosition="40"
+                app:motionTarget="@id/background"
+                app:curveFit="linear"
+                app:percentY="1"/>
 
             <KeyAttribute
-                android:alpha="0"
-                app:framePosition="80"
-                app:motionTarget="@id/toolbar"/>
+                app:framePosition="40"
+                app:motionTarget="@id/background">
+                <CustomAttribute app:attributeName="background"
+                    app:customColorDrawableValue="@color/colorPrimary"/>
+            </KeyAttribute>
+
+            <KeyAttribute
+                android:translationZ="-100dp"
+                app:framePosition="55"
+                app:motionTarget="@id/icon"
+                app:curveFit="linear"/>
         </KeyFrameSet>
+
     </Transition>
 
     <ConstraintSet
@@ -45,7 +59,68 @@
                 app:customColorDrawableValue="@color/colorAccent"/>
         </Constraint>
 
+        <Constraint
+            android:id="@id/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Constraint
+            android:id="@id/icon"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="16dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:translationZ="100dp"
+            android:translationY="0dp"
+            app:layout_constraintTop_toBottomOf="@id/background"
+            app:layout_constraintBottom_toBottomOf="@id/background"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+<!--        <Constraint android:id="@id/icon">-->
+<!--            <Transform android:translationZ="100dp"-->
+<!--                android:scaleX="1"-->
+<!--                android:scaleY="1"/>-->
+<!--        </Constraint>-->
+
     </ConstraintSet>
+
+<!--    <ConstraintSet-->
+<!--        android:id="@+id/half">-->
+
+<!--        <Constraint-->
+<!--            android:id="@id/toolbar"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:alpha="1"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--        <Constraint-->
+<!--            android:id="@id/background"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="200dp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/toolbar">-->
+<!--            <CustomAttribute-->
+<!--                app:attributeName="background"-->
+<!--                app:customColorDrawableValue="@color/colorPrimary"/>-->
+<!--        </Constraint>-->
+
+<!--        <Constraint-->
+<!--            android:id="@id/content"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/background"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--    </ConstraintSet>-->
 
     <ConstraintSet
         android:id="@+id/collapse">
@@ -70,6 +145,26 @@
                 app:attributeName="background"
                 app:customColorDrawableValue="@color/colorPrimary"/>
         </Constraint>
+
+        <Constraint
+            android:id="@id/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Constraint
+            android:id="@id/icon"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="16dp"
+            android:scaleX="0.25"
+            android:scaleY="0.25"
+            android:translationZ="-100dp"
+            android:translationY="36dp"
+            app:layout_constraintBottom_toTopOf="@id/content"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </ConstraintSet>
 
